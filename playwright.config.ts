@@ -7,6 +7,7 @@ export default defineConfig({
     timeout: 5000,
   },
   fullyParallel: true,
+  retries: process.env['CI'] ? 2 : 1,
   reporter: 'html',
   use: {
     baseURL: 'https://example.com',
@@ -16,15 +17,15 @@ export default defineConfig({
   projects: [
     {
       name: 'Chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], screenshot: 'only-on-failure', video: 'retain-on-failure' },
     },
     {
       name: 'Firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { ...devices['Desktop Firefox'], screenshot: 'only-on-failure', video: 'retain-on-failure'    },
     },
     {
       name: 'WebKit',
-      use: { ...devices['Desktop Safari'] },
+      use: { ...devices['Desktop Safari'], screenshot: 'only-on-failure', video: 'retain-on-failure' },
     },
   ],
 });
