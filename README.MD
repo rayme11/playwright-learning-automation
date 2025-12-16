@@ -1,4 +1,4 @@
-Here is an improved **simple `README.md`** with added **project context**, while still keeping it clean and beginner-friendly.
+
 
 ---
 
@@ -66,9 +66,16 @@ npm run test:ui
 ```
 playwright-learning-automation/
   ├── tests/
-  │     └── example.spec.ts      # Sample starter test
-  ├── pages/                     # Page Object Models (optional for now)
-  ├── playwright.config.ts       # Global Playwright config
+  │     ├── example.spec.ts           # Sample starter test
+  │     ├── kw-search.spec.ts         # Real-world web UI test (KW.com)
+  │     └── api/                      # API testing examples
+  │           ├── jsonplaceholder.spec.ts    # REST API tests (GET, POST, PUT, PATCH, DELETE)
+  │           ├── users-api.spec.ts          # Complex nested data & related resources
+  │           ├── api-with-auth.spec.ts      # Advanced patterns (headers, chaining, retry)
+  │           └── README.md                  # API testing documentation
+  ├── pages/                          # Page Object Models
+  │     └── example-page.ts
+  ├── playwright.config.ts            # Global Playwright config (with retry logic)
   ├── package.json
   └── README.md
 ```
@@ -98,5 +105,41 @@ This repo will help you:
 * Understand how Playwright Test works from the ground up
 * Learn how to structure UI automation using best practices
 * Write your own tests using selectors, assertions, locators, and waits
+* **Master API testing** with REST endpoints (GET, POST, PUT, PATCH, DELETE)
+* Work with **real-world applications** (KW.com Flutter web app example)
+* Configure **retry logic** for different environments (local vs CI)
+* Organize tests with **describe blocks** and **beforeEach hooks**
 * Expand into more advanced patterns as your skills grow
 * Prepare for real-world automation tasks in professional environments
+
+---
+
+## 🌐 API Testing
+
+This project includes comprehensive API testing examples using [JSONPlaceholder](https://jsonplaceholder.typicode.com/), a free fake REST API.
+
+### Run API tests only:
+```bash
+npx playwright test tests/api
+```
+
+### Features covered:
+* **HTTP Methods**: GET, POST, PUT, PATCH, DELETE
+* **Response validation**: Status codes, headers, JSON structure
+* **Query parameters** and custom headers
+* **Chaining API calls** for complex scenarios
+* **Error handling** and retry logic
+* **Performance testing** (response time validation)
+
+See `tests/api/README.md` for detailed documentation.
+
+---
+
+## ⚙️ Configuration Highlights
+
+### Retry Logic
+The project is configured to automatically retry failed tests:
+- **1 retry** when running locally
+- **2 retries** in CI environments (when `CI` env variable is set)
+
+See `playwright.config.ts` for configuration details.
